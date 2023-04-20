@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 503626784}
   - component: {fileID: 503626787}
   - component: {fileID: 503626786}
+  - component: {fileID: 503626788}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -318,6 +319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddca109374e4b92b86519928a9f39e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minX: 0
+  maxX: 0
+  minY: 0
+  maxY: 0
 --- !u!114 &503626787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +336,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldController: {fileID: 503626786}
+  asteroidGameObject: {fileID: 0}
+--- !u!114 &503626788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503626783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e246b5a279604734910a2d7ceb865f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &515993646
 GameObject:
   m_ObjectHideFlags: 0

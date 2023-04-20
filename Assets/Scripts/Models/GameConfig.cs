@@ -7,6 +7,7 @@ namespace Moshah.Asteroids.Models
     {
         [Header("world")]
         public float drag;
+        public float boundaryThreshold;
         
         [Space]
         [Header("spaceship")]
@@ -17,7 +18,11 @@ namespace Moshah.Asteroids.Models
         [Space]
         public Vector2 forceVector;
         public KeyCode addForceKey;
-        
+
+        [Space]
+        [Header("asteroids")] 
+        public GameObject bigAsteroid;
+
         [Space]
         public float bulletSpeed;
         public KeyCode shootBulletKey;
