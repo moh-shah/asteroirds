@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 81361300}
   - component: {fileID: 81361299}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81361298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0.65153754, z: 0}
+  m_LocalPosition: {x: -1.98, y: 0.65153754, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -253,9 +253,8 @@ GameObject:
   - component: {fileID: 503626784}
   - component: {fileID: 503626787}
   - component: {fileID: 503626786}
-  - component: {fileID: 503626788}
   m_Layer: 0
-  m_Name: SceneContext
+  m_Name: '[SceneContext]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,7 +304,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &503626786
 MonoBehaviour:
@@ -336,19 +335,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldController: {fileID: 503626786}
-  asteroidGameObject: {fileID: 0}
---- !u!114 &503626788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503626783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e246b5a279604734910a2d7ceb865f6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bigAsteroid: {fileID: 5085100535012163821, guid: cdd9e2c40491c9e4c8ff576bbff6f417, type: 3}
+  mediumAsteroid: {fileID: 5085100535012163821, guid: e32b3945f4d126f429f30f5967425252, type: 3}
+  smallAsteroid: {fileID: 5085100535012163821, guid: 0da9008bdc96eee44a22f59b521a331e, type: 3}
+  spaceshipBullet: {fileID: 6245935046493334197, guid: a4ef41196424fae49b93438ae50a2bbb, type: 3}
 --- !u!1 &515993646
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +554,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &738944401
 GameObject:

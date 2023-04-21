@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Moshah.Asteroids.Gameplay;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Moshah.Asteroids.Models
 {
@@ -12,19 +17,42 @@ namespace Moshah.Asteroids.Models
         [Space]
         [Header("spaceship")]
         public float rotationAngle;
+        public Vector2 forceVector;
         public KeyCode rightRotationKey;
         public KeyCode leftRotationKey;
-        
-        [Space]
-        public Vector2 forceVector;
         public KeyCode addForceKey;
 
         [Space]
         [Header("asteroids")] 
-        public GameObject bigAsteroid;
+        public List<AsteroidSizeConfig> asteroidSizeConig;
 
         [Space]
-        public float bulletSpeed;
+        
+        public int bulletDamage;
+        public float bulletLifeTime;
+        public float bulletVelocity;
         public KeyCode shootBulletKey;
+
+
+        public int GetAsteroidHp(AsteroidSize asteroidSize)
+        {
+            var definedConfig = asteroidSizeConig.FirstOrDefault(a => a.size == asteroidSize);
+            return definedConfig?.hp ?? 1;
+        }
+        
+        public int GetAsteroidVelocity(AsteroidSize asteroidSize)
+        {
+            var definedConfig = asteroidSizeConig.FirstOrDefault(a => a.size == asteroidSize);
+            return definedConfig!=null ? Random.Range(definedConfig.minVelocity, definedConfig.maxVelocity) : 100;
+        }
+    }
+
+    [Serializable]
+    public class AsteroidSizeConfig
+    {
+        public AsteroidSize size;
+        public int hp;
+        public int minVelocity;
+        public int maxVelocity;
     }
 }

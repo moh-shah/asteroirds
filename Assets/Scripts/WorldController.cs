@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Moshah.Asteroids.Models;
 using UnityEngine;
 using Zenject;
@@ -27,7 +28,7 @@ namespace Moshah.Asteroids.Gameplay
 
         public void WrapFloatingObjectsPositionsIfOutsideBoundaries()
         {
-            foreach (var floatingObject in _floatingObjects)
+            foreach (var floatingObject in _floatingObjects.ToList())
             {
                 if (floatingObject.Position.x < minX - _gameConfig.boundaryThreshold)
                 {

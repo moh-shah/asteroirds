@@ -2,9 +2,9 @@
 
 namespace Moshah.Asteroids.Gameplay
 {
+    //vehicle should get inputs...
     public interface IVehicleController : IFloatingObject
     {
-        void Rotate(float angle);
-        void AddForce(Vector2 forceVector);
+        
     }
 }

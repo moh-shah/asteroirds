@@ -13,11 +13,26 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   drag: 0.7
+  boundaryThreshold: 1
   rotationAngle: 90
+  forceVector: {x: 0, y: 5}
   rightRotationKey: 275
   leftRotationKey: 276
-  forceVector: {x: 0, y: 5}
   addForceKey: 273
-  bigAsteroid: {fileID: 2726238941837546636, guid: cdd9e2c40491c9e4c8ff576bbff6f417, type: 3}
-  bulletSpeed: 0
-  shootBulletKey: 0
+  asteroidSizeConig:
+  - size: 1
+    hp: 3
+    minVelocity: 20
+    maxVelocity: 50
+  - size: 2
+    hp: 2
+    minVelocity: 50
+    maxVelocity: 70
+  - size: 3
+    hp: 1
+    minVelocity: 70
+    maxVelocity: 100
+  bulletDamage: 1
+  bulletLifeTime: 10
+  bulletVelocity: 500
+  shootBulletKey: 32
