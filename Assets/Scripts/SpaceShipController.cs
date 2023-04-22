@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Moshah.Asteroids.Gameplay
 {
-    public class SpaceShipController : MonoBehaviour, IVehicleController
+    public class SpaceShipController : MonoBehaviour, IVehicleController, IAttackableEntity
     {
         [SerializeField] private Rigidbody2D spaceshipRigidbody;
 
@@ -24,9 +24,12 @@ namespace Moshah.Asteroids.Gameplay
             get => spaceshipRigidbody.rotation;
             set => spaceshipRigidbody.rotation = value;
         }
+        public int Hp { get; set; }
+
         
         private void Start()
         {
+            Hp = _gameConfig.spaceshipHp;
             spaceshipRigidbody.drag = _gameConfig.drag;
             _worldController.RegisterFloatingObject(this);
         }
@@ -71,6 +74,20 @@ namespace Moshah.Asteroids.Gameplay
             var bullet =_bulletFactory.Create(transform.position, spaceshipRigidbody.rotation); 
             bullet.AddForce(transform.up.normalized * _gameConfig.bulletVelocity);
             _worldController.RegisterFloatingObject(bullet);
+        }
+
+        public void TakeDamage(int amount)
+        {
+            Hp -= amount;
+            if (Hp<=0)
+                OnHpReachedZero();
+        }
+
+        public void OnHpReachedZero()
+        {
+            Debug.LogError("spaceship is destroyed");
+            _worldController.RemoveFloatingObject(this);
+            Destroy(gameObject);
         }
     }
 }

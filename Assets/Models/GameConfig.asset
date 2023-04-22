@@ -15,6 +15,7 @@ MonoBehaviour:
   drag: 0.7
   boundaryThreshold: 1
   rotationAngle: 90
+  spaceshipHp: 1
   forceVector: {x: 0, y: 5}
   rightRotationKey: 275
   leftRotationKey: 276
@@ -32,6 +33,7 @@ MonoBehaviour:
     hp: 1
     minVelocity: 70
     maxVelocity: 100
+  asteroidDamage: 1
   bulletDamage: 1
   bulletLifeTime: 10
   bulletVelocity: 500

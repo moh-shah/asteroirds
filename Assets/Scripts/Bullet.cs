@@ -52,7 +52,7 @@ namespace Moshah.Asteroids.Gameplay
             var asteroid = other.GetComponent<Asteroid>();
             if (asteroid != null)
             {
-                asteroid.GetDamage(_gameConfig.bulletDamage);
+                asteroid.TakeDamage(_gameConfig.bulletDamage);
                 Destroy(gameObject);
             }
         }

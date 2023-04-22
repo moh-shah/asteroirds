@@ -13,8 +13,9 @@ namespace Moshah.Asteroids.Gameplay
         [HideInInspector] public float minY;
         [HideInInspector] public float maxY;
 
-        private readonly List<IFloatingObject> _floatingObjects = new List<IFloatingObject>();
         [Inject] private GameConfig _gameConfig;
+        
+        private readonly List<IFloatingObject> _floatingObjects = new List<IFloatingObject>();
 
         private void Start()
         {

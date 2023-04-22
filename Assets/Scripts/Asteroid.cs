@@ -23,6 +23,7 @@ namespace Moshah.Asteroids.Gameplay
         [Inject] private GameConfig _gameConfig;
         [Inject] private AsteroidsSpawner _asteroidsSpawner;
         [Inject] private WorldController _worldController;
+        [Inject] private CoreGameController _coreGameController;
         
         public int Hp { get; set; }
         public Vector2 Position
@@ -58,7 +59,7 @@ namespace Moshah.Asteroids.Gameplay
         }
 
 
-        public void GetDamage(int amount)
+        public void TakeDamage(int amount)
         {
             Hp -= amount;
             if (Hp <= 0)
@@ -68,6 +69,7 @@ namespace Moshah.Asteroids.Gameplay
         public void OnHpReachedZero()
         {
             Destroy(gameObject);
+            _coreGameController.AsteroidDestroyed(_size);
             switch (_size)
             {
                 case AsteroidSize.Big:
@@ -90,6 +92,13 @@ namespace Moshah.Asteroids.Gameplay
         private void OnDestroy()
         {
             _worldController.RemoveFloatingObject(this);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            var spaceship = other.GetComponent<SpaceShipController>();
+            if (spaceship!=null)
+                spaceship.TakeDamage(_gameConfig.asteroidDamage);
         }
 
         public class Factory : PlaceholderFactory<Vector2,AsteroidSize, Asteroid>

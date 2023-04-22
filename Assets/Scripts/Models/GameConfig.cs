@@ -17,6 +17,7 @@ namespace Moshah.Asteroids.Models
         [Space]
         [Header("spaceship")]
         public float rotationAngle;
+        public int spaceshipHp;
         public Vector2 forceVector;
         public KeyCode rightRotationKey;
         public KeyCode leftRotationKey;
@@ -25,7 +26,8 @@ namespace Moshah.Asteroids.Models
         [Space]
         [Header("asteroids")] 
         public List<AsteroidSizeConfig> asteroidSizeConig;
-
+        public int asteroidDamage;
+        
         [Space]
         
         public int bulletDamage;
@@ -45,6 +47,12 @@ namespace Moshah.Asteroids.Models
             var definedConfig = asteroidSizeConig.FirstOrDefault(a => a.size == asteroidSize);
             return definedConfig!=null ? Random.Range(definedConfig.minVelocity, definedConfig.maxVelocity) : 100;
         }
+
+        public int GetAsteroidScoreAfterGettingDestroyed(AsteroidSize asteroidSize)
+        {
+            var definedConfig = asteroidSizeConig.FirstOrDefault(a => a.size == asteroidSize);
+            return definedConfig?.scoreAfterGettingDestroyed ?? 1;
+        }
     }
 
     [Serializable]
@@ -54,5 +62,6 @@ namespace Moshah.Asteroids.Models
         public int hp;
         public int minVelocity;
         public int maxVelocity;
+        public int scoreAfterGettingDestroyed;
     }
 }

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 namespace Moshah.Asteroids.Gameplay
 {
-    public class CoreSceneMonoInstaller : MonoInstaller
+    public class CoreSceneInitializer : MonoInstaller
     {
         [SerializeField] private WorldController worldController;
         [SerializeField] private Asteroid bigAsteroid;
@@ -21,6 +19,7 @@ namespace Moshah.Asteroids.Gameplay
             _asteroidsParent= new GameObject("AsteroidsParent").transform;
             _bulletsParent = new GameObject("BulletsParent").transform;
 
+            Container.Bind<CoreGameController>().FromNew().AsSingle();
             Container.Bind<WorldController>().FromInstance(worldController);
             Container.BindInterfacesAndSelfTo<AsteroidsSpawner>().FromNew().AsSingle();
             

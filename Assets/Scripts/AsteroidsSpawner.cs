@@ -26,7 +26,6 @@ namespace Moshah.Asteroids.Gameplay
             {
                 waitTime = 0;
                 SpawnAsteroid(AsteroidSize.Big,new Vector3(_worldController.maxX + 1, _worldController.maxY + 1));
-
             }
         }
 

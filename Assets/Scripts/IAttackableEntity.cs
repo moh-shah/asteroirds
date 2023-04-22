@@ -3,7 +3,7 @@
     public interface IAttackableEntity
     {
         public int Hp { get; set; }
-        void GetDamage(int amount);
+        void TakeDamage(int amount);
         void OnHpReachedZero();
     }
 }
