@@ -15,28 +15,29 @@ MonoBehaviour:
   drag: 0.7
   boundaryThreshold: 1
   rotationAngle: 90
-  spaceshipHp: 8888
+  spaceshipHp: 3
   forceVector: {x: 0, y: 5}
   rightRotationKey: 275
   leftRotationKey: 276
   addForceKey: 273
   attackInterval: 0.1
+  invulnerabilityTime: 1.5
   asteroidSizeConig:
   - size: 1
     hp: 3
     minVelocity: 50
     maxVelocity: 60
-    scoreAfterGettingDestroyed: 0
+    scoreAfterGettingDestroyed: 1
   - size: 2
     hp: 2
     minVelocity: 60
     maxVelocity: 70
-    scoreAfterGettingDestroyed: 0
+    scoreAfterGettingDestroyed: 2
   - size: 3
     hp: 1
     minVelocity: 70
     maxVelocity: 100
-    scoreAfterGettingDestroyed: 0
+    scoreAfterGettingDestroyed: 3
   asteroidDamage: 1
   asteroidSpawnIntervalMax: 3
   asteroidSpawnIntervalMin: 0.5

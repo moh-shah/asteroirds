@@ -10,10 +10,11 @@ namespace Moshah.Asteroids.Gameplay
         [SerializeField] private Asteroid mediumAsteroid;
         [SerializeField] private Asteroid smallAsteroid;
         [SerializeField] private Bullet spaceshipBullet;
+        [SerializeField] private SpaceShipController spaceShipController;
         
         public override void InstallBindings()
         {
-            Container.Bind<CoreGameController>().FromNew().AsSingle();
+            Container.BindInterfacesAndSelfTo<CoreGameController>().FromNew().AsSingle();
             Container.Bind<WorldController>().FromInstance(worldController);
             Container.BindInterfacesAndSelfTo<AsteroidsSpawner>().FromNew().AsSingle();
 
@@ -27,6 +28,8 @@ namespace Moshah.Asteroids.Gameplay
             
             Container.BindMemoryPool<Bullet, Bullet.Pool>().WithInitialSize(20)
                 .FromComponentInNewPrefab(spaceshipBullet).UnderTransformGroup("BulletsParent");
+            
+            Container.Bind<SpaceShipController>().FromInstance(spaceShipController);
         }
     }
 }

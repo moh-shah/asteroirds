@@ -22,7 +22,12 @@ namespace Moshah.Asteroids.Gameplay
         [Inject] private CoreGameController _coreGameController;
         
         private IMemoryPool _pool;
-        private AsteroidSize _size;
+
+        public AsteroidSize Size
+        {
+            get;
+            set;
+        }
 
         public int Hp { get; set; }
         
@@ -58,8 +63,8 @@ namespace Moshah.Asteroids.Gameplay
 
         public void OnHpReachedZero()
         {
-            _coreGameController.AsteroidDestroyed(_size);
-            switch (_size)
+            _coreGameController.AsteroidDestroyed(Size);
+            switch (Size)
             {
                 case AsteroidSize.Big:
                     _asteroidsSpawner.SpawnAsteroid(AsteroidSize.Medium, transform.position);
@@ -90,12 +95,12 @@ namespace Moshah.Asteroids.Gameplay
         public void OnSpawned(Vector2 position, AsteroidSize size,IMemoryPool pool)
         {
             _pool = pool;
-            _size = size;
+            Size = size;
             _worldController.RegisterFloatingObject(this);
             transform.position = position;
-            Hp = _gameConfig.GetAsteroidHp(_size);
+            Hp = _gameConfig.GetAsteroidHp(Size);
             Rotate(Random.Range(0,360f));
-            AddForce(transform.up.normalized * _gameConfig.GetAsteroidVelocity(_size));
+            AddForce(transform.up.normalized * _gameConfig.GetAsteroidVelocity(Size));
         }
         
         public void OnDespawned()

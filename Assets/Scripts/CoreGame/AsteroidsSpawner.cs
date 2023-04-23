@@ -1,11 +1,14 @@
-﻿using Moshah.Asteroids.Models;
+﻿using Moshah.Asteroids.Base;
+using Moshah.Asteroids.Models;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Moshah.Asteroids.Gameplay
 {
-    public class AsteroidsSpawner : ITickable,IInitializable
+    public class AsteroidsSpawner : ITickable, IInitializable
     {
+        [Inject] private GameStateManager _gameStateManager;
         [Inject] private GameConfig _gameConfig;
         [Inject] private WorldController _worldController;
         [Inject(Id = AsteroidSize.Big)]
@@ -21,11 +24,36 @@ namespace Moshah.Asteroids.Gameplay
         public void Initialize()
         {
             _waitTime = _gameConfig.asteroidSpawnIntervalMax;
-            Debug.Log($"_waitTime: {_waitTime}");
+            _gameStateManager.OnStateChanged += delegate(GameState state)
+            {
+                if (state == GameState.MainMenu)
+                {
+                    foreach (var asteroid in Object.FindObjectsOfType<Asteroid>())
+                    {
+                        switch (asteroid.Size)
+                        {
+                            case AsteroidSize.Big:
+                                _bigAsteroidPool.Despawn(asteroid);
+                                break;
+                         
+                            case AsteroidSize.Medium:
+                                _mediumAsteroidPool.Despawn(asteroid);
+                                break;
+                     
+                            case AsteroidSize.Small:
+                                _smallAsteroidPool.Despawn(asteroid);
+                                break;
+                        }
+                    }
+                }
+            };
         }
         
         public void Tick()
         {
+            if (_gameStateManager.CurrentState != GameState.Gameplay) 
+                return;
+            
             _waitTimer += Time.deltaTime;
             if (_waitTimer < _waitTime)
                 return;
@@ -38,8 +66,6 @@ namespace Moshah.Asteroids.Gameplay
                 if(_waitTime>_gameConfig.asteroidSpawnIntervalMin)
                     _waitTime -= _gameConfig.asteroidSpawnIntervalDecreaseValue;
             }
-            Debug.Log($"_waitTime: {_waitTime}");
-
         }
 
         public void SpawnAsteroid(AsteroidSize asteroidSize, Vector2 position)

@@ -23,6 +23,7 @@ namespace Moshah.Asteroids.Models
         public KeyCode leftRotationKey;
         public KeyCode addForceKey;
         public float attackInterval;
+        public float invulnerabilityTime;
 
         [Space]
         [Header("asteroids")] 
