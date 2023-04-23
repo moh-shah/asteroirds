@@ -11,27 +11,22 @@ namespace Moshah.Asteroids.Gameplay
         [SerializeField] private Asteroid smallAsteroid;
         [SerializeField] private Bullet spaceshipBullet;
         
-        private Transform _asteroidsParent;        
-        private Transform _bulletsParent;        
-        
         public override void InstallBindings()
         {
-            _asteroidsParent= new GameObject("AsteroidsParent").transform;
-            _bulletsParent = new GameObject("BulletsParent").transform;
-
             Container.Bind<CoreGameController>().FromNew().AsSingle();
             Container.Bind<WorldController>().FromInstance(worldController);
             Container.BindInterfacesAndSelfTo<AsteroidsSpawner>().FromNew().AsSingle();
-            
-            Container.BindFactory<Vector2, AsteroidSize, Asteroid, Asteroid.Factory>().WithId(AsteroidSize.Big)
-                .FromComponentInNewPrefab(bigAsteroid).UnderTransform(_asteroidsParent);
-            Container.BindFactory<Vector2, AsteroidSize, Asteroid, Asteroid.Factory>().WithId(AsteroidSize.Medium)
-                .FromComponentInNewPrefab(mediumAsteroid).UnderTransform(_asteroidsParent);
-            Container.BindFactory<Vector2, AsteroidSize, Asteroid, Asteroid.Factory>().WithId(AsteroidSize.Small)
-                .FromComponentInNewPrefab(smallAsteroid).UnderTransform(_asteroidsParent);
 
-            Container.BindFactory<Vector3, float, Bullet, Bullet.Factory>().FromComponentInNewPrefab(spaceshipBullet)
-                .UnderTransform(_bulletsParent);
+         
+            Container.BindMemoryPool<Asteroid, Asteroid.Pool>().WithId(AsteroidSize.Big)
+                .FromComponentInNewPrefab(bigAsteroid).UnderTransformGroup("BigAsteroidsParent");
+            Container.BindMemoryPool<Asteroid, Asteroid.Pool>().WithId(AsteroidSize.Medium)
+                .FromComponentInNewPrefab(mediumAsteroid).UnderTransformGroup("MediumAsteroidsParent");
+            Container.BindMemoryPool<Asteroid, Asteroid.Pool>().WithId(AsteroidSize.Small)
+                .FromComponentInNewPrefab(smallAsteroid).UnderTransformGroup("SmallAsteroidsParent");
+            
+            Container.BindMemoryPool<Bullet, Bullet.Pool>().WithInitialSize(20)
+                .FromComponentInNewPrefab(spaceshipBullet).UnderTransformGroup("BulletsParent");
         }
     }
 }

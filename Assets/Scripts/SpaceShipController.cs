@@ -11,8 +11,10 @@ namespace Moshah.Asteroids.Gameplay
 
         [Inject] private WorldController _worldController;
         [Inject] private GameConfig _gameConfig;
-        [Inject] private Bullet.Factory _bulletFactory;
+        [Inject] private Bullet.Pool _bulletPool;
 
+        private float _attackIntervalTimer;
+        
         public Vector2 Position
         {
             get => transform.position;
@@ -41,6 +43,7 @@ namespace Moshah.Asteroids.Gameplay
 
         private void Update()
         {
+            _attackIntervalTimer += Time.deltaTime;
             HandleInput();
         }
 
@@ -71,9 +74,12 @@ namespace Moshah.Asteroids.Gameplay
 
         private void Shoot()
         {
-            var bullet =_bulletFactory.Create(transform.position, spaceshipRigidbody.rotation); 
+            if (_attackIntervalTimer < _gameConfig.attackInterval)
+                return;
+
+            var bullet = _bulletPool.Spawn(transform.position, spaceshipRigidbody.rotation); 
             bullet.AddForce(transform.up.normalized * _gameConfig.bulletVelocity);
-            _worldController.RegisterFloatingObject(bullet);
+            _attackIntervalTimer = 0;
         }
 
         public void TakeDamage(int amount)
