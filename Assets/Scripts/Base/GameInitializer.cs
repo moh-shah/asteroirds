@@ -7,10 +7,13 @@ namespace Moshah.Asteroids.Base
     public class GameInitializer : MonoInstaller
     {
         [SerializeField] private MonoBehaviourHelper monoBehaviourHelper;
+        [SerializeField] private AudioManager audioManager;
         public override void InstallBindings()
         {
             Debug.Log($"[{GetType().Name}]: game is getting initialized.");
+            
             Container.Bind<MonoBehaviourHelper>().FromInstance(monoBehaviourHelper);
+            Container.Bind<AudioManager>().FromInstance(audioManager);
             Container.BindInterfacesAndSelfTo<GameStateManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerPrefsScoreDataPort>().AsSingle();
             

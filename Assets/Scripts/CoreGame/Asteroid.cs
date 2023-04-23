@@ -1,4 +1,5 @@
-﻿using Moshah.Asteroids.Models;
+﻿using Moshah.Asteroids.Base;
+using Moshah.Asteroids.Models;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -20,13 +21,14 @@ namespace Moshah.Asteroids.Gameplay
         [Inject] private AsteroidsSpawner _asteroidsSpawner;
         [Inject] private WorldController _worldController;
         [Inject] private CoreGameController _coreGameController;
+        [Inject] private AudioManager _audioManager;
         
         private IMemoryPool _pool;
 
         public AsteroidSize Size
         {
             get;
-            set;
+            private set;
         }
 
         public int Hp { get; set; }
@@ -43,7 +45,6 @@ namespace Moshah.Asteroids.Gameplay
             set => rigidbody.rotation = value;
         }
         
-
         public void Rotate(float angle)
         {
             transform.Rotate(transform.forward, angle);
@@ -83,6 +84,7 @@ namespace Moshah.Asteroids.Gameplay
             }
             
             _pool.Despawn(this);
+            _audioManager.PlaySfx(SfxType.Hit);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using DG.Tweening;
+using Moshah.Asteroids.Base;
 using Moshah.Asteroids.Models;
 using UnityEngine;
 using Zenject;
@@ -16,6 +17,7 @@ namespace Moshah.Asteroids.Gameplay
 
         [Inject] private WorldController _worldController;
         [Inject] private GameConfig _gameConfig;
+        [Inject] private AudioManager _audioManager;
         [Inject] private Bullet.Pool _bulletPool;
 
         private float _attackIntervalTimer;
@@ -75,6 +77,7 @@ namespace Moshah.Asteroids.Gameplay
             var bullet = _bulletPool.Spawn(transform.position, spaceshipRigidbody.rotation); 
             bullet.AddForce(transform.up.normalized * _gameConfig.bulletVelocity);
             _attackIntervalTimer = 0;
+            _audioManager.PlaySfx(SfxType.Shoot);
         }
 
         private IEnumerator MakeMeVulnerable()
@@ -97,7 +100,6 @@ namespace Moshah.Asteroids.Gameplay
             StartCoroutine(MakeMeVulnerable());
         }
         
-
         public void Rotate(float angle)
         {
             spaceshipRigidbody.SetRotation(spaceshipRigidbody.rotation + angle * Time.deltaTime);
@@ -113,6 +115,7 @@ namespace Moshah.Asteroids.Gameplay
             if (!_isVulnerable)
                 return;
             
+            _audioManager.PlaySfx(SfxType.GameOver);
             Hp -= amount;
             OnHpChanged.Invoke(Hp);
             if (Hp <= 0)

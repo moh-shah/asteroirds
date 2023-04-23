@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: AudioClips
+  m_EditorClassIdentifier: 
+  m_GroupName: AudioClips
+  m_Data:
+    m_SerializedData: []
+  m_GUID: fdafb89d8e65c0b438beb02986375b0e
+  m_SerializeEntries:
+  - m_GUID: c2bfd43cf2e14d84f8a5b292ef856f4e
+    m_Address: Assets/Sounds/BULLET_1.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 78d55b27276b2654f9a9826fa24c0633
+    m_Address: Assets/Sounds/GAME_OVER_1.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0fda784b48aeff046b45b0dbdb321296
+    m_Address: Assets/Sounds/hit.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: df86c63e87e2971488ba93315ea73622, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 30b105eaba9b27c47b01d2a252bae5a4, type: 2}
+    - {fileID: 11400000, guid: 938878e4e7ef4a6409cd0b7881a19e18, type: 2}
