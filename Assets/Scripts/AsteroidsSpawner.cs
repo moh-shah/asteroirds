@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Moshah.Asteroids.Models;
 using UnityEngine;
 using Zenject;
-using Random = UnityEngine.Random;
 
 namespace Moshah.Asteroids.Gameplay
 {
@@ -13,27 +10,42 @@ namespace Moshah.Asteroids.Gameplay
         [Inject] private GameConfig _gameConfig;
         [Inject] private WorldController _worldController;
         
-        [Inject(Id = AsteroidSize.Big)] private Asteroid.Factory _asteroidFactory;
-
-        private readonly List<Asteroid> _currentAsteroids = new List<Asteroid>();
-       
-        private float waitTime = 0;
+        [Inject(Id = AsteroidSize.Big)]
+        private Asteroid.Pool _bigAsteroidPool;
+        [Inject(Id = AsteroidSize.Medium)]
+        private Asteroid.Pool _mediumAsteroidPool;
+        [Inject(Id = AsteroidSize.Small)]
+        private Asteroid.Pool _smallAsteroidPool;
+        
+        private float _waitTime = 0;
         
         public void Tick()
         {
-            waitTime += Time.deltaTime;
-            if (waitTime>2)
-            {
-                waitTime = 0;
-                SpawnAsteroid(AsteroidSize.Big,new Vector3(_worldController.maxX + 1, _worldController.maxY + 1));
-            }
+            _waitTime += Time.deltaTime;
+            if (_waitTime < _gameConfig.asteroidSpawnInterval)
+                return;
+            
+            _waitTime = 0;
+            SpawnAsteroid(AsteroidSize.Big,new Vector3(_worldController.maxX + 1, _worldController.maxY + 1));
         }
 
         public void SpawnAsteroid(AsteroidSize asteroidSize, Vector2 position)
         {
-            var asteroid = _asteroidFactory.Create(position, asteroidSize);
-            _worldController.RegisterFloatingObject(asteroid);
-            _currentAsteroids.Add(asteroid);
+            switch (asteroidSize)
+            {
+                case AsteroidSize.Big:
+                    _bigAsteroidPool.Spawn(position, asteroidSize, _bigAsteroidPool);
+                    break;
+                
+                case AsteroidSize.Medium:
+                    _mediumAsteroidPool.Spawn(position, asteroidSize, _bigAsteroidPool);
+                    break;
+                
+                case AsteroidSize.Small:
+                    _smallAsteroidPool.Spawn(position, asteroidSize, _bigAsteroidPool);
+                    break;
+                
+            } 
         }
     }
 }

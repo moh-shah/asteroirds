@@ -15,26 +15,31 @@ MonoBehaviour:
   drag: 0.7
   boundaryThreshold: 1
   rotationAngle: 90
-  spaceshipHp: 1
+  spaceshipHp: 8888
   forceVector: {x: 0, y: 5}
   rightRotationKey: 275
   leftRotationKey: 276
   addForceKey: 273
+  attackInterval: 0.1
   asteroidSizeConig:
   - size: 1
     hp: 3
     minVelocity: 20
     maxVelocity: 50
+    scoreAfterGettingDestroyed: 0
   - size: 2
     hp: 2
     minVelocity: 50
     maxVelocity: 70
+    scoreAfterGettingDestroyed: 0
   - size: 3
     hp: 1
     minVelocity: 70
     maxVelocity: 100
+    scoreAfterGettingDestroyed: 0
   asteroidDamage: 1
+  asteroidSpawnInterval: 2
   bulletDamage: 1
-  bulletLifeTime: 10
+  bulletLifeTime: 3
   bulletVelocity: 500
   shootBulletKey: 32

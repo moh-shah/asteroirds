@@ -22,11 +22,13 @@ namespace Moshah.Asteroids.Models
         public KeyCode rightRotationKey;
         public KeyCode leftRotationKey;
         public KeyCode addForceKey;
+        public float attackInterval;
 
         [Space]
         [Header("asteroids")] 
         public List<AsteroidSizeConfig> asteroidSizeConig;
         public int asteroidDamage;
+        public float asteroidSpawnInterval;
         
         [Space]
         
