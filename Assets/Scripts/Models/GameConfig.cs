@@ -28,7 +28,10 @@ namespace Moshah.Asteroids.Models
         [Header("asteroids")] 
         public List<AsteroidSizeConfig> asteroidSizeConig;
         public int asteroidDamage;
-        public float asteroidSpawnInterval;
+        public float asteroidSpawnIntervalMax;
+        public float asteroidSpawnIntervalMin;
+        public float asteroidSpawnIntervalDecreaseValue;
+        public float decreaseAsteroidSpawnIntervalAfterSpawningThisAmountOfBigAsteroids;
         
         [Space]
         

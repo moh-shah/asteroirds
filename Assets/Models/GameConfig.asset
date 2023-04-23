@@ -24,12 +24,12 @@ MonoBehaviour:
   asteroidSizeConig:
   - size: 1
     hp: 3
-    minVelocity: 20
-    maxVelocity: 50
+    minVelocity: 50
+    maxVelocity: 60
     scoreAfterGettingDestroyed: 0
   - size: 2
     hp: 2
-    minVelocity: 50
+    minVelocity: 60
     maxVelocity: 70
     scoreAfterGettingDestroyed: 0
   - size: 3
@@ -38,7 +38,10 @@ MonoBehaviour:
     maxVelocity: 100
     scoreAfterGettingDestroyed: 0
   asteroidDamage: 1
-  asteroidSpawnInterval: 2
+  asteroidSpawnIntervalMax: 3
+  asteroidSpawnIntervalMin: 0.5
+  asteroidSpawnIntervalDecreaseValue: 0.2
+  decreaseAsteroidSpawnIntervalAfterSpawningThisAmountOfBigAsteroids: 3
   bulletDamage: 1
   bulletLifeTime: 3
   bulletVelocity: 500

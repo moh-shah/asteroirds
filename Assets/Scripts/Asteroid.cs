@@ -1,6 +1,4 @@
-﻿using System;
-using DG.Tweening;
-using Moshah.Asteroids.Models;
+﻿using Moshah.Asteroids.Models;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -14,10 +12,10 @@ namespace Moshah.Asteroids.Gameplay
         Medium,
         Small
     }
-    public class Asteroid : MonoBehaviour, IFloatingObject, IAttackableEntity, IPoolable<Vector2,AsteroidSize,IMemoryPool>
+    public class Asteroid : MonoBehaviour, IFloatingEntity, IAttackableEntity, IPoolable<Vector2, AsteroidSize, IMemoryPool>
     {
         [SerializeField] private new Rigidbody2D rigidbody;
-        
+
         [Inject] private GameConfig _gameConfig;
         [Inject] private AsteroidsSpawner _asteroidsSpawner;
         [Inject] private WorldController _worldController;
@@ -25,7 +23,6 @@ namespace Moshah.Asteroids.Gameplay
         
         private IMemoryPool _pool;
         private AsteroidSize _size;
-        private Vector2 _position;
 
         public int Hp { get; set; }
         
@@ -44,7 +41,7 @@ namespace Moshah.Asteroids.Gameplay
 
         public void Rotate(float angle)
         {
-            rigidbody.SetRotation(angle);
+            transform.Rotate(transform.forward, angle);
         }
 
         public void AddForce(Vector2 forceVector)
@@ -94,15 +91,11 @@ namespace Moshah.Asteroids.Gameplay
         {
             _pool = pool;
             _size = size;
-            _position = position; 
             _worldController.RegisterFloatingObject(this);
-            
+            transform.position = position;
             Hp = _gameConfig.GetAsteroidHp(_size);
-            transform.position = _position;
-            var force = new Vector2(_gameConfig.GetAsteroidVelocity(_size), _gameConfig.GetAsteroidVelocity(_size));
-            var rotation = Random.Range(0,360f);
-            AddForce(force);
-            Rotate(rotation);
+            Rotate(Random.Range(0,360f));
+            AddForce(transform.up.normalized * _gameConfig.GetAsteroidVelocity(_size));
         }
         
         public void OnDespawned()

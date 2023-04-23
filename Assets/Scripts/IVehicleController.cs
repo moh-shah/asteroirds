@@ -3,7 +3,7 @@
 namespace Moshah.Asteroids.Gameplay
 {
     //vehicle should get inputs...
-    public interface IVehicleController : IFloatingObject
+    public interface IVehicleController : IFloatingEntity
     {
         
     }

@@ -3,7 +3,7 @@
     public interface IWorldController
     {
         void WrapFloatingObjectsPositionsIfOutsideBoundaries();
-        void RegisterFloatingObject(IFloatingObject floatingObject);
-        void RemoveFloatingObject(IFloatingObject floatingObject);
+        void RegisterFloatingObject(IFloatingEntity floatingEntity);
+        void RemoveFloatingObject(IFloatingEntity floatingEntity);
     }
 }

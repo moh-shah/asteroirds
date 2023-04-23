@@ -15,7 +15,7 @@ namespace Moshah.Asteroids.Gameplay
 
         [Inject] private GameConfig _gameConfig;
         
-        private readonly List<IFloatingObject> _floatingObjects = new List<IFloatingObject>();
+        private readonly List<IFloatingEntity> _floatingObjects = new List<IFloatingEntity>();
 
         private void Start()
         {
@@ -57,14 +57,14 @@ namespace Moshah.Asteroids.Gameplay
             }
         }
 
-        public void RegisterFloatingObject(IFloatingObject floatingObject)
+        public void RegisterFloatingObject(IFloatingEntity floatingEntity)
         {
-            _floatingObjects.Add(floatingObject);
+            _floatingObjects.Add(floatingEntity);
         }
 
-        public void RemoveFloatingObject(IFloatingObject floatingObject)
+        public void RemoveFloatingObject(IFloatingEntity floatingEntity)
         {
-            _floatingObjects.Remove(floatingObject);
+            _floatingObjects.Remove(floatingEntity);
         }
 
         private void Update()

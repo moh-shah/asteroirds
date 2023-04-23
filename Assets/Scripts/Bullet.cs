@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Moshah.Asteroids.Gameplay
 {
-    public class Bullet : MonoBehaviour, IFloatingObject, IPoolable<Vector3, float>
+    public class Bullet : MonoBehaviour, IFloatingEntity, IPoolable<Vector3, float>
     {
         [SerializeField] private Rigidbody2D bulletRigidbody;
         

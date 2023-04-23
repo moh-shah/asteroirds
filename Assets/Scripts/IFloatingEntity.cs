@@ -2,7 +2,7 @@
 
 namespace Moshah.Asteroids.Gameplay
 {
-    public interface IFloatingObject
+    public interface IFloatingEntity
     {
         public Vector2 Position { get; set; }
         public float Rotation { get; set; }
