@@ -1,6 +1,4 @@
-﻿using Moshah.Asteroids.Models;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 namespace Moshah.Asteroids.Base
 {
@@ -15,6 +13,11 @@ namespace Moshah.Asteroids.Base
         public int GetHighScore()
         {
             return PlayerPrefs.GetInt(HighScoreKey, 0);
+        }
+
+        public void ClearData()
+        {
+            PlayerPrefs.DeleteKey(HighScoreKey);
         }
     }
 }

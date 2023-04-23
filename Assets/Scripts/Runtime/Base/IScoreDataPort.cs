@@ -4,5 +4,7 @@
     {
         void SubmitHighScore(int score);
         int GetHighScore();
+
+        void ClearData();
     }
 }

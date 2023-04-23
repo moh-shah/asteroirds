@@ -1,0 +1,22 @@
+{
+    "name": "Moshah.Asteroids.Tests.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5f6b1375da6e8c645bfa44dec7aff7f4",
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:27619889b8ba8c24980f49ee34dbb44a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
