@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using Moq;
 using Moshah.Asteroids.Base;
 using Moshah.Asteroids.Gameplay;
@@ -48,3 +50,4 @@ namespace Moshah.Asteroids.Tests.RunTime
         }
     }
 }
+#endif
