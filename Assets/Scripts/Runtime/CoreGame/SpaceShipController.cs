@@ -8,11 +8,10 @@ using Zenject;
 
 namespace Moshah.Asteroids.Gameplay
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class SpaceShipController : MonoBehaviour, IAttackableEntity, IFloatingEntity
     {
-        public event Action<int> OnHpChanged = delegate(int hp) {  }; 
-        
-        [SerializeField] private Rigidbody2D spaceshipRigidbody;
+        public event Action<int> OnHpChanged = delegate(int hp) {  };
         [SerializeField] private SpriteRenderer spriteRenderer;
 
         [Inject] private WorldController _worldController;
@@ -22,6 +21,7 @@ namespace Moshah.Asteroids.Gameplay
 
         private float _attackIntervalTimer;
         private bool _isVulnerable;
+        private Rigidbody2D _spaceshipRigidbody;
         
         public Vector2 Position
         {
@@ -31,15 +31,16 @@ namespace Moshah.Asteroids.Gameplay
         
         public float Rotation
         {
-            get => spaceshipRigidbody.rotation;
-            set => spaceshipRigidbody.rotation = value;
+            get => _spaceshipRigidbody.rotation;
+            set => _spaceshipRigidbody.rotation = value;
         }
         public int Hp { get; set; }
         
         private void OnEnable()
         {
             Hp = _gameConfig.spaceshipHp;
-            spaceshipRigidbody.drag = _gameConfig.drag;
+            _spaceshipRigidbody = GetComponent<Rigidbody2D>();
+            _spaceshipRigidbody.drag = _gameConfig.drag;
             _worldController.RegisterFloatingObject(this);
         }
 
@@ -74,7 +75,7 @@ namespace Moshah.Asteroids.Gameplay
             if (_attackIntervalTimer < _gameConfig.attackInterval)
                 return;
 
-            var bullet = _bulletPool.Spawn(transform.position, spaceshipRigidbody.rotation); 
+            var bullet = _bulletPool.Spawn(transform.position, _spaceshipRigidbody.rotation); 
             bullet.AddForce(transform.up.normalized * _gameConfig.bulletVelocity);
             _attackIntervalTimer = 0;
             _audioManager.PlaySfx(SfxType.Shoot);
@@ -89,8 +90,8 @@ namespace Moshah.Asteroids.Gameplay
         public void Spawn()
         {
             gameObject.SetActive(true);
-            spaceshipRigidbody.velocity = Vector2.zero;
-            spaceshipRigidbody.rotation = 0;
+            _spaceshipRigidbody.velocity = Vector2.zero;
+            _spaceshipRigidbody.rotation = 0;
             transform.position = Vector3.zero;
             _isVulnerable = false;
             spriteRenderer.DOFade(0, _gameConfig.invulnerabilityTime / 3f).SetLoops(3, LoopType.Yoyo).onComplete+= () =>
@@ -102,12 +103,12 @@ namespace Moshah.Asteroids.Gameplay
         
         public void Rotate(float angle)
         {
-            spaceshipRigidbody.SetRotation(spaceshipRigidbody.rotation + angle * Time.deltaTime);
+            _spaceshipRigidbody.SetRotation(_spaceshipRigidbody.rotation + angle * Time.deltaTime);
         }
 
         public void AddForce(Vector2 forceVector)
         {
-            spaceshipRigidbody.AddRelativeForce(forceVector);
+            _spaceshipRigidbody.AddRelativeForce(forceVector);
         }
         
         public void TakeDamage(int amount)

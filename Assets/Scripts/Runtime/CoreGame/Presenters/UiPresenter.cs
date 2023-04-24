@@ -1,4 +1,5 @@
-﻿using Moshah.Asteroids.Base;
+﻿using System.Collections;
+using Moshah.Asteroids.Base;
 using Moshah.Asteroids.Gameplay;
 using Moshah.Asteroids.Models;
 using TMPro;
@@ -45,10 +46,6 @@ namespace Moshah.Asteroids.Presenters
                 {
                     case GameState.MainMenu:
                         _gameStateManager.ChangeState(GameState.Gameplay);
-                        break;
-                   
-                    case GameState.ResultScreen:
-                        _gameStateManager.ChangeState(GameState.MainMenu);
                         break;
                 }
             }
@@ -116,6 +113,13 @@ namespace Moshah.Asteroids.Presenters
             yourScoreText.text = _coreGameController.TotalScore.ToString();
             highScoreText.text = _scoreDataPort.GetHighScore().ToString();
             spaceToContinueText.AnimateGraphicsFadeInAndOut();
+            StartCoroutine(ChangeStateWithDelay());
+        }
+
+        private IEnumerator ChangeStateWithDelay()
+        {
+            yield return new WaitForSeconds(5);
+            _gameStateManager.ChangeState(GameState.MainMenu);
         }
     }
 }

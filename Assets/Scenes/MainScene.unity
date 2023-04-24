@@ -213,7 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a858e758f1b459592dcbbc3ee725d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceshipRigidbody: {fileID: 81361299}
   spriteRenderer: {fileID: 81361301}
 --- !u!212 &81361301
 SpriteRenderer:
@@ -668,9 +667,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldController: {fileID: 503626786}
-  bigAsteroid: {fileID: 5085100535012163821, guid: cdd9e2c40491c9e4c8ff576bbff6f417, type: 3}
-  mediumAsteroid: {fileID: 5085100535012163821, guid: e32b3945f4d126f429f30f5967425252, type: 3}
-  smallAsteroid: {fileID: 5085100535012163821, guid: 0da9008bdc96eee44a22f59b521a331e, type: 3}
+  bigAsteroid: {fileID: 6053661423896594474, guid: 0cd1a4e3c4176764995c2d9d14c68eb3, type: 3}
+  mediumAsteroid: {fileID: 3417568712465494908, guid: e32b3945f4d126f429f30f5967425252, type: 3}
+  smallAsteroid: {fileID: 5812726089304042829, guid: 0da9008bdc96eee44a22f59b521a331e, type: 3}
   spaceshipBullet: {fileID: 6245935046493334197, guid: a4ef41196424fae49b93438ae50a2bbb, type: 3}
   spaceShipController: {fileID: 81361300}
 --- !u!1 &515993646
