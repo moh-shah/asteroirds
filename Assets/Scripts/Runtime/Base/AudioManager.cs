@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -11,7 +10,12 @@ namespace Moshah.Asteroids.Base
         Hit,
         GameOver
     }
-    public class AudioManager : MonoBehaviour
+
+    public interface IAudioManager
+    {
+        void PlaySfx(SfxType sfxType);
+    }
+    public class AudioManager : MonoBehaviour,IAudioManager
     {
         [SerializeField] private AudioSource audioSource;
         

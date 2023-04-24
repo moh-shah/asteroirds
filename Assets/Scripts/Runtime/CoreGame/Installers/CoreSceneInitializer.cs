@@ -15,7 +15,7 @@ namespace Moshah.Asteroids.Gameplay
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<CoreGameController>().FromNew().AsSingle();
-            Container.Bind<WorldController>().FromInstance(worldController);
+            Container.BindInterfacesAndSelfTo<WorldController>().FromInstance(worldController);
             Container.BindInterfacesAndSelfTo<AsteroidsSpawner>().FromNew().AsSingle();
 
          

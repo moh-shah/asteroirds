@@ -5,13 +5,19 @@ using Zenject;
 
 namespace Moshah.Asteroids.Gameplay
 {
-    public class CoreGameController : IInitializable
+    public interface ICoreGameController
+    {
+        event Action<int, int> OnScoreIncreased;
+        int TotalScore { get; set; }
+        void AsteroidDestroyed(AsteroidSize asteroidSize);
+    }
+    public class CoreGameController : IInitializable, ICoreGameController
     {
         public event Action<int, int> OnScoreIncreased = delegate(int prevScore, int newScore) { };
         public int TotalScore
         {
             get => _totalScore;
-            private set
+            set
             {
                 var prevScore = _totalScore;
                 _totalScore = value;

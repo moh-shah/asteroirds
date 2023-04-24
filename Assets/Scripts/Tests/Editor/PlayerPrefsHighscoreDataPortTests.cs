@@ -1,7 +1,7 @@
 using Moshah.Asteroids.Base;
 using NUnit.Framework;
 
-namespace Moshah.Asteroids.Tests
+namespace Moshah.Asteroids.Tests.Editor
 {
     public class PlayerPrefsHighscoreDataPortTests
     {

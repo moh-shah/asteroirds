@@ -6,7 +6,12 @@ using Object = UnityEngine.Object;
 
 namespace Moshah.Asteroids.Gameplay
 {
-    public class AsteroidsSpawner : ITickable, IInitializable
+    public interface IAsteroidsSpawner
+    {
+        void SpawnAsteroid(AsteroidSize asteroidSize, Vector2 position);
+    }
+
+    public class AsteroidsSpawner : ITickable, IInitializable, IAsteroidsSpawner
     {
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private GameConfig _gameConfig;

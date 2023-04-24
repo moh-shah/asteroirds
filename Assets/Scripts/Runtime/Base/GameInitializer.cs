@@ -13,7 +13,7 @@ namespace Moshah.Asteroids.Base
             Debug.Log($"[{GetType().Name}]: game is getting initialized.");
             
             Container.Bind<MonoBehaviourHelper>().FromInstance(monoBehaviourHelper);
-            Container.Bind<AudioManager>().FromInstance(audioManager);
+            Container.BindInterfacesAndSelfTo<AudioManager>().FromInstance(audioManager);
             Container.BindInterfacesAndSelfTo<GameStateManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerPrefsScoreDataPort>().AsSingle();
             

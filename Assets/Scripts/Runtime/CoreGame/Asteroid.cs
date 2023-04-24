@@ -18,10 +18,10 @@ namespace Moshah.Asteroids.Gameplay
         [SerializeField] private new Rigidbody2D rigidbody;
 
         [Inject] private GameConfig _gameConfig;
-        [Inject] private AsteroidsSpawner _asteroidsSpawner;
-        [Inject] private WorldController _worldController;
-        [Inject] private CoreGameController _coreGameController;
-        [Inject] private AudioManager _audioManager;
+        [Inject] private IAsteroidsSpawner _asteroidsSpawner;
+        [Inject] private IWorldController _worldController;
+        [Inject] private ICoreGameController _coreGameController;
+        [Inject] private IAudioManager _audioManager;
         
         private IMemoryPool _pool;
 

@@ -14,9 +14,9 @@ namespace Moshah.Asteroids.Gameplay
         public event Action<int> OnHpChanged = delegate(int hp) {  };
         [SerializeField] private SpriteRenderer spriteRenderer;
 
-        [Inject] private WorldController _worldController;
         [Inject] private GameConfig _gameConfig;
-        [Inject] private AudioManager _audioManager;
+        [Inject] private IWorldController _worldController;
+        [Inject] private IAudioManager _audioManager;
         [Inject] private Bullet.Pool _bulletPool;
 
         private float _attackIntervalTimer;
